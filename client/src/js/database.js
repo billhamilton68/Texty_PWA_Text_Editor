@@ -1,4 +1,5 @@
 import { openDB } from 'idb';
+// This is the database version, it is used to determine whether the database needs to be updated in the future.
 
 const initdb = async () => {
   const db = await openDB('jate', 1, {
@@ -9,7 +10,7 @@ const initdb = async () => {
   return db;
 };
 
-
+// This function is used to save the content to the IndexedDB database.
 export const putDb = async (content) => {
   try {
     const db = await initdb();
@@ -23,7 +24,7 @@ export const putDb = async (content) => {
     console.error('Error saving to IndexedDB:', error);
   }
 };
-
+//  This function is used to retrieve the content from the IndexedDB database.
 export const getDb = async () => {
   try {
     const db = await initdb();
