@@ -1,5 +1,4 @@
-web: npm run server
-
+web: node node/server.js
 
 ```
 ```
