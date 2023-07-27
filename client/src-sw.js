@@ -25,6 +25,41 @@ warmStrategyCache({
 });
 
 registerRoute(
+  ({ request }) => request.destination === 'document', // Only match HTML documents
+  ({ event }) => {
+    // Use the previously cached version, if it exists.
+    // Otherwise, fetch from the network.
+    return pageCache
+      .match(event.request)
+      .then((response) => response || fetch(event.request));
+  }
+);
+
+offlineFallback({
+  pageFallback: '/index.html',
+});
+
+
+
+
+
+
+/*registerRoute(
+  ({ request }) => request.destination === 'script' || request.destination === 'style',
+  new CacheFirst({
+    cacheName: 'assets-cache',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+      new ExpirationPlugin({
+        maxEntries: 50,
+        maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+      }),
+    ],
+  })
+);*/
+registerRoute(
   ({ request }) => request.destination === 'script' || request.destination === 'style',
   new CacheFirst({
     cacheName: 'assets-cache',
@@ -39,4 +74,3 @@ registerRoute(
     ],
   })
 );
-registerRoute();
