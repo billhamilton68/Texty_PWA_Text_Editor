@@ -23,7 +23,7 @@ module.exports = (env, argv) => {
       publicPath: '/',
       icons: [
         {
-          src: path.resolve('src/assets/icon.png'),
+          src: path.resolve('src/Assets/icon.png'),
           sizes: [96, 128, 192, 256, 384, 512],
           // Specify the correct destination
           destination: path.join('assets', 'icons'),
