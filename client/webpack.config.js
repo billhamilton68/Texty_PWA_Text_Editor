@@ -18,7 +18,7 @@ module.exports = (env, argv) => {
       background_color: '#ffffff',
       theme_color: '#000000',
       inject: true,
-      fingerprints: true,
+      fingerprints: false,
       ios: true,
       publicPath: '/',
       icons: [
